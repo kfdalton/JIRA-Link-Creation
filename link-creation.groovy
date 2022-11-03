@@ -27,6 +27,11 @@ Issue issue = issue
 def cField = customFieldManager.getCustomFieldObjectByName("CUSTOM FIELD NAME") //Custom Field Name
 def cFieldValue = issue.getCustomFieldValue(cField).toString()
 
+if (cFieldValue.isEmpty()) {
+	log.warn("Custom Field is Empty")
+	return
+	}
+
 
 def remoteLinks = remoteIssueLinkManager.getRemoteIssueLinksForIssue(issue)
 def remoteLinksHtml = remoteLinks.collect { remoteLink ->
